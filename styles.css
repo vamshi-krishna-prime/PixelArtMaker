@@ -1,0 +1,79 @@
+body {
+    text-align: center;
+}
+
+h1 {
+    font-family: Monoton;
+    font-size: 70px;
+    margin: 0.2em;
+}
+
+h2 {
+    margin: 1em 0 0.25em;
+}
+
+h2:first-of-type {
+    margin-top: 0.5em;
+}
+
+.box{
+  height: 460px;
+  overflow: auto;
+}
+
+
+input[type=number] {
+    width: 6em;
+}
+
+.canvas {
+	width: 400px;
+	height: 400px;
+	margin: auto;
+  border: solid black 4px;
+  border-radius: 2%;
+  /* justify-items: stretch; */
+
+}
+
+.cell {
+    /* background-color: #e9ecef;
+    display: block;
+    float: left; */
+
+    border: solid black 1px;
+    /* background: #e9ecef; */
+    background: #f0f2f5;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    float: left;
+    /* transition: all 0.3s; */
+}
+
+.colorCell {
+    /* background-color: #6c757d;
+    display: block;
+    float: left; */
+    border: solid black 1px;
+    /* background: #e9ecef; */
+    background: #f0f2f5;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+.btn {
+	margin: 15px;
+
+}
+
+.emptyCell {
+  border: solid black 1px;
+  background: #f0f2f5;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  float: left;
+}

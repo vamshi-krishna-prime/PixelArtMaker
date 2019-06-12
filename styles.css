@@ -68,3 +68,29 @@ input[type=number] {
 	outline:1px solid #000;
 	display:inline-block;
 }
+
+.canvas {
+	width: 400px;
+	height: 400px;
+	margin: auto;
+	padding-bottom: 50px;
+
+}
+
+.cell {
+    background-color: #e9ecef;
+    display: block;
+    float: left;
+
+}
+
+.colorCell {
+    background-color: #6c757d;
+    display: block;
+    float: left;
+}
+
+.btn {
+	margin: 15px;
+
+}

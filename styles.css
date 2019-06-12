@@ -21,59 +21,50 @@ h2:first-of-type {
   overflow: auto;
 }
 
+table,
+tr,
+td {
+    border: 1px solid black;
+}
+
+table {
+    table-layout: auto;
+    position: relative;
+    border-collapse: collapse;
+    margin: 0 auto;
+    bottom: 20px
+    height:100%;
+   	width:460px;
+}
+
+tr {
+    height: 20px;
+}
+
+td {
+    width: 20px;
+}
 
 input[type=number] {
     width: 6em;
 }
 
-.canvas {
-	width: 400px;
-	height: 400px;
-	margin: auto;
-  border: solid black 4px;
-  border-radius: 2%;
-  /* justify-items: stretch; */
-
+#container {
+	position: relative;
+	top: 30px;
+	outline:2px solid #000;
+	font-size: 0;
+	margin:auto;
+	height:960px;
+	width:960px;
+	padding: 0;
+	border: none;
 }
 
-.cell {
-    /* background-color: #e9ecef;
-    display: block;
-    float: left; */
-
-    border: solid black 1px;
-    /* background: #e9ecef; */
-    background: #f0f2f5;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    float: left;
-    /* transition: all 0.3s; */
-}
-
-.colorCell {
-    /* background-color: #6c757d;
-    display: block;
-    float: left; */
-    border: solid black 1px;
-    /* background: #e9ecef; */
-    background: #f0f2f5;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    float: left;
-}
-
-.btn {
-	margin: 15px;
-
-}
-
-.emptyCell {
-  border: solid black 1px;
-  background: #f0f2f5;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  float: left;
+.grid {
+	margin:0;
+	padding:0;
+	border:none;
+	outline:1px solid #000;
+	display:inline-block;
 }

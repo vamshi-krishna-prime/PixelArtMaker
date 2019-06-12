@@ -1,8 +1,3 @@
-function changeColor() {
-    const color = document.getElementById("colorPicker").value;
-    this.style.background = color;
-}
-
 
 const canvasSize = 400; // the size of the canvas defined in style.css
 const cellColor = '#f0f2f5';
@@ -15,6 +10,9 @@ chngColorBtn.addEventListener('click', randomColor);
 
 let gridSizeBtn = document.getElementById('gridsize-btn');
 gridSizeBtn.addEventListener('click', eraseGrid);
+
+let colorPicker = document.getElementById('colorPicker');
+colorPicker.addEventListener('click', changeColor);
 
 
 
@@ -57,9 +55,7 @@ function createCanvas(){
 
     cell.addEventListener("click", ()=>{
       // cell.setAttribute("class", "cell");
-      const colorPicker = document.getElementById("colorPicker");
-      let selectedColor = colorPicker.value;
-      cell.style.backgroundColor = selectedColor;
+      cell.style.backgroundColor = 'black';
       cell.style.border = "thin solid white";
 		});
 
@@ -69,11 +65,14 @@ function createCanvas(){
 
 
 function deleteCanvas(){
-	canvas =  document.querySelector('.canvas');
-	canvas.parentNode.removeChild(canvas);
-
-	// createCanvas();
+  const container = document.getElementById('canvas');
+	canvas = document.querySelectorAll('.canvas');
+	// canvas.parentNode.removeChild(canvas);
+  container.remove(canvas);
+  // let cell = document.querySelectorAll('.cell');
+  // cell.forEach(x => x.remove());
 }
+
 
 function resetGrid(){
 	const cell = document.querySelectorAll('.colorCell, .cell'); // get all cells where the class has been changed to .colorCell
@@ -85,37 +84,51 @@ function resetGrid(){
 	});
 }
 
-function eraseGrid(){
-  const cell = document.querySelectorAll('.colorCell, .cell'); // get all cells where the class has been changed to .colorCell
-	cell.addEventListener('click', cell => {
-		cell.setAttribute("class", "emptycell"); // set the class to .cell.
-	});
-}
-
-
 function randomNumber(){
 	//generate random number between 0 and 255, this number will later on represent an RGB value.
 	return Math.floor(Math.random() * 256);
 }
 
 function randomColor(){
-	// assign a number between 0 and 255 to each RGB value.
-	// let rColor = randomNumber();
-	// let gColor = randomNumber();
-	// let bColor = randomNumber();
-
 	const cell = document.querySelectorAll('.cell, .colorCell');
-
 	cell.forEach(cell => {
 		cell.addEventListener("click", () =>{
     let rColor = randomNumber();
   	let gColor = randomNumber();
   	let bColor = randomNumber();
 		cell.style.backgroundColor = `rgb(${rColor},${gColor},${bColor}`;
-		cell.setAttribute("class", "colorCell");
+		// cell.setAttribute("class", "colorCell");
 		});
 	});
 }
+
+
+function changeColor(){
+  const cell = document.querySelectorAll('.cell, .colorCell');
+
+	cell.forEach(cell => {
+		cell.addEventListener("click", () =>{
+      // let colorPicker = document.getElementById('colorPicker');
+      let selectedColor = colorPicker.value;
+      console.log(selectedColor);
+      if (selectedColor == undefined){selectedColor = 'red';console.log(selectedColor);}
+      cell.style.backgroundColor = selectedColor;
+      cell.style.border = "thin solid white";
+		});
+	});
+    // cell.setAttribute("class", "cell");
+  };
+
+function eraseGrid(){
+  const cell = document.querySelectorAll('.cell, .colorCell');
+	cell.forEach(cell => {
+		cell.addEventListener("click", () =>{
+      cell.style.backgroundColor = cellColor;
+      cell.style.border = "thin solid black";
+		});
+	});
+}
+
 
 function changeGridSize(){
 	cellNumbers = prompt('Enter new grid size (1 to 100):');
@@ -133,9 +146,6 @@ function changeGridSize(){
 
 $("#sizePicker").submit(function(event) {
   event.preventDefault();
-  // const height = $("#input_height").val();
-  // const width = $("#input_width").val();
-  // createCanvas(height, width);
   deleteCanvas();
   createCanvas();
 });

@@ -1,128 +1,82 @@
+body {
+    text-align: center;
+}
 
-const canvasSize = 400; // the size of the canvas defined in style.css
-const cellColor = '#f0f2f5';
+h1 {
+    font-family: Monoton;
+    font-size: 70px;
+    margin: 0.2em;
+}
 
-let resetBtn = document.getElementById('reset-btn');
-resetBtn.addEventListener('click', resetGrid);
+h2 {
+    margin: 1em 0 0.25em;
+}
 
-let chngColorBtn = document.getElementById('color-btn');
-chngColorBtn.addEventListener('click', randomColor);
+h2:first-of-type {
+    margin-top: 0.5em;
+}
 
-let gridSizeBtn = document.getElementById('gridsize-btn');
-gridSizeBtn.addEventListener('click', eraseGrid);
-
-let colorPicker = document.getElementById('colorPicker');
-colorPicker.addEventListener('click', changeColor);
-
-
-
-function createCanvas(){
-	const container = document.getElementById('canvas');
-	const canvas = document.createElement('div');
-	canvas.classList.add('canvas');
-	container.appendChild(canvas);
-  // const gridHeight = document.getElementById("input_height").value;
-  // const gridWidth = document.getElementById("input_width").value;
-
-  const gridHeight = $("#input_height").val();
-  const gridWidth = $("#input_width").val();
-
-  const submitButton = document.querySelector('input[type=submit]');
-  submitButton.addEventListener('click', function () {
-    console.log('The submit was clicked!');
-    console.log(gridHeight);
-    console.log(gridWidth);
-  });
-
-	for (let i=0; i<(gridHeight*gridWidth); i++){
-
-		const cellHeight = canvasSize / gridHeight; // define the height and width of each individual cell, based on the number of cells and canvasSize.
-    const cellWidth = canvasSize / gridWidth; // define the height and width of each individual cell, based on the number of cells and canvasSize.
-
-		const cell = document.createElement('div');
-		cell.style.height = `${cellHeight}px`; // create element cell and set the cell height in px
-		cell.style.width = `${cellWidth}px`; // set the cell width in px
-
-		cell.classList.add('cell'); // add the .cell class to the cell div
-		canvas.appendChild(cell); // add the cell div to the canvas div
-
-		// cell.addEventListener("mouseover", ()=>{
-		// 	cell.setAttribute("class", "colorCell");
-		// }); // on mouse over, set the class of the cell div to .colorCell
-
-    cell.addEventListener("click", ()=>{
-      // cell.setAttribute("class", "cell");
-      cell.style.backgroundColor = 'black';
-      cell.style.border = "thin solid white";
-		});
-
-	}
+.box{
+  height: 460px;
+  overflow: auto;
 }
 
 
-
-function deleteCanvas(){
-	$(".canvas").remove();
+input[type=number] {
+    width: 6em;
 }
 
+.canvas {
+	width: 400px;
+	height: 400px;
+	margin: auto;
+  border: solid black 8px;
+  border-radius: 2%;
+  /* justify-items: stretch; */
 
-function resetGrid(){
-	const cell = document.querySelectorAll('.colorCell, .cell'); // get all cells where the class has been changed to .colorCell
-	cell.forEach(cell => {
-		cell.setAttribute("class", "cell"); // set the class to .cell.
-		cell.style.backgroundColor = cellColor; // set background color for these cells back to the default color.
-    cell.style.border = "thin solid black";
-
-	});
 }
 
-function randomNumber(){
-	//generate random number between 0 and 255, this number will later on represent an RGB value.
-	return Math.floor(Math.random() * 256);
+.cell {
+    /* background-color: #e9ecef;
+    display: block;
+    float: left; */
+
+    border: solid black 1px;
+    /* background: #e9ecef; */
+    background: #f0f2f5;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    float: left;
+    /* transition: all 0.3s; */
 }
 
-function randomColor(){
-	const cell = document.querySelectorAll('.cell, .colorCell');
-	cell.forEach(cell => {
-		cell.addEventListener("click", () =>{
-    let rColor = randomNumber();
-  	let gColor = randomNumber();
-  	let bColor = randomNumber();
-		cell.style.backgroundColor = `rgb(${rColor},${gColor},${bColor}`;
-		cell.style.border = "thin solid white";
-		// cell.setAttribute("class", "colorCell");
-		});
-	});
+.colorCell {
+    /* background-color: #6c757d;
+    display: block;
+    float: left; */
+    border: solid black 1px;
+    /* background: #e9ecef; */
+    background: #f0f2f5;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    float: left;
 }
 
+.btn {
+	margin: 15px;
 
-function changeColor(){
-  const cell = document.querySelectorAll('.cell, .colorCell');
-	cell.forEach(cell => {
-		cell.addEventListener("click", () =>{
-      let selectedColor = colorPicker.value;
-      console.log(selectedColor);
-      if (selectedColor == undefined){selectedColor = 'red';console.log(selectedColor);}
-      cell.style.backgroundColor = selectedColor;
-      cell.style.border = "thin solid white";
-		});
-	});
-    // cell.setAttribute("class", "cell");
-  };
-
-function eraseGrid(){
-  const cell = document.querySelectorAll('.cell, .colorCell');
-	cell.forEach(cell => {
-		cell.addEventListener("click", () =>{
-      cell.style.backgroundColor = cellColor;
-      cell.style.border = "thin solid black";
-		});
-	});
 }
 
+.emptyCell {
+  border: solid black 1px;
+  background: #f0f2f5;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
 
-$("#sizePicker").submit(function(event) {
-  event.preventDefault();
-	deleteCanvas();
-  createCanvas();
-});
+#reset-btn{
+}

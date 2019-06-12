@@ -1,4 +1,3 @@
-
 const canvasSize = 400; // the size of the canvas defined in style.css
 const cellColor = '#f0f2f5';
 
@@ -13,7 +12,6 @@ gridSizeBtn.addEventListener('click', eraseGrid);
 
 let colorPicker = document.getElementById('colorPicker');
 colorPicker.addEventListener('click', changeColor);
-
 
 
 function createCanvas(){
@@ -60,7 +58,6 @@ function createCanvas(){
 }
 
 
-
 function deleteCanvas(){
 	$(".canvas").remove();
 }
@@ -94,7 +91,6 @@ function randomColor(){
 		});
 	});
 }
-
 
 function changeColor(){
   const cell = document.querySelectorAll('.cell, .colorCell');

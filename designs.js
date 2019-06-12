@@ -24,11 +24,8 @@ function createCanvas(){
   // const gridHeight = document.getElementById("input_height").value;
   // const gridWidth = document.getElementById("input_width").value;
 
-  canvas.classList.add('plainCanvas');
-
   const gridHeight = $("#input_height").val();
   const gridWidth = $("#input_width").val();
-
 
   const submitButton = document.querySelector('input[type=submit]');
   submitButton.addEventListener('click', function () {
@@ -65,12 +62,7 @@ function createCanvas(){
 
 
 function deleteCanvas(){
-  const container = document.getElementById('canvas');
-	canvas = document.querySelectorAll('.canvas');
-	// canvas.parentNode.removeChild(canvas);
-  container.remove(canvas);
-  // let cell = document.querySelectorAll('.cell');
-  // cell.forEach(x => x.remove());
+	$(".canvas").remove();
 }
 
 
@@ -97,6 +89,7 @@ function randomColor(){
   	let gColor = randomNumber();
   	let bColor = randomNumber();
 		cell.style.backgroundColor = `rgb(${rColor},${gColor},${bColor}`;
+		cell.style.border = "thin solid white";
 		// cell.setAttribute("class", "colorCell");
 		});
 	});
@@ -105,10 +98,8 @@ function randomColor(){
 
 function changeColor(){
   const cell = document.querySelectorAll('.cell, .colorCell');
-
 	cell.forEach(cell => {
 		cell.addEventListener("click", () =>{
-      // let colorPicker = document.getElementById('colorPicker');
       let selectedColor = colorPicker.value;
       console.log(selectedColor);
       if (selectedColor == undefined){selectedColor = 'red';console.log(selectedColor);}
@@ -130,22 +121,8 @@ function eraseGrid(){
 }
 
 
-function changeGridSize(){
-	cellNumbers = prompt('Enter new grid size (1 to 100):');
-
-	// Check for valid input.
-	if (cellNumbers < 1 || cellNumbers > 100) {
-		alert('Please enter a positive value smaller or equal to 100.')
-		return;
-	} else {
-		//remove existing canvas and create new canvas.
-		deleteCanvas();
-	}
-}
-// createCanvas();
-
 $("#sizePicker").submit(function(event) {
   event.preventDefault();
-  deleteCanvas();
+	deleteCanvas();
   createCanvas();
 });

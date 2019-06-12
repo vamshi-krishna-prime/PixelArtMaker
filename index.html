@@ -21,11 +21,23 @@
     <input type="color" id="colorPicker">
 
     <h2>Design Canvas</h2>
-    <div class="box"><table id="pixelCanvas"></table></div>
+    <!-- <div class="box"><table id="pixelCanvas"></table></div> -->
 
+<!--  -->
+    <section id="canvas"></section>
+    <section>
+      <div class="container-fluid controls">
+        <div class="row justify-content-center">
 
-    <center><button class="newGrid">New Grid</button></center>
-    <div id="container"></div>
+            <button type="button" id="reset-btn" class="btn btn-lg btn-outline-danger">RESET</button>
+            <button type="button" id="color-btn" class="btn btn-lg btn-outline-secondary">Random Color</button>
+            <button type="button" id="gridsize-btn" class="btn btn-lg btn-outline-secondary">Grid Size</button>
+
+        </div>
+      </div>
+    </section>
+
+    <!--  -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="designs.js"></script>
 </body>

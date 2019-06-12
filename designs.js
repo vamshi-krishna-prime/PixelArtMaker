@@ -26,6 +26,7 @@ function createCanvas(){
   // const gridHeight = document.getElementById("input_height").value;
   // const gridWidth = document.getElementById("input_width").value;
 
+  canvas.classList.add('plainCanvas');
 
   const gridHeight = $("#input_height").val();
   const gridWidth = $("#input_width").val();
@@ -55,6 +56,7 @@ function createCanvas(){
 		// }); // on mouse over, set the class of the cell div to .colorCell
 
     cell.addEventListener("click", ()=>{
+      // cell.setAttribute("class", "cell");
       const colorPicker = document.getElementById("colorPicker");
       let selectedColor = colorPicker.value;
       cell.style.backgroundColor = selectedColor;
@@ -98,14 +100,17 @@ function randomNumber(){
 
 function randomColor(){
 	// assign a number between 0 and 255 to each RGB value.
-	let rColor = randomNumber();
-	let gColor = randomNumber();
-	let bColor = randomNumber();
+	// let rColor = randomNumber();
+	// let gColor = randomNumber();
+	// let bColor = randomNumber();
 
 	const cell = document.querySelectorAll('.cell, .colorCell');
 
 	cell.forEach(cell => {
-		cell.addEventListener("mouseover", () =>{
+		cell.addEventListener("click", () =>{
+    let rColor = randomNumber();
+  	let gColor = randomNumber();
+  	let bColor = randomNumber();
 		cell.style.backgroundColor = `rgb(${rColor},${gColor},${bColor}`;
 		cell.setAttribute("class", "colorCell");
 		});

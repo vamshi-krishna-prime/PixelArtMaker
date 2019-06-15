@@ -135,8 +135,8 @@ function hoverColor(effectToggle){
       cell.style.backgroundColor = selectedColor;
       cell.style.border = "thin solid white";
 			// cell.removeEventListener(evt.type, this);
-			cell.removeEventListener("mouseover", effect);
-			cell.removeEventListener("click", effect);
+			// cell.removeEventListener("mouseover", effect);
+			// cell.removeEventListener("click", effect);
 			// this.removeEventListener("mouseover", effect);
 			// this.removeEventListener("click", effect);
     }
@@ -148,8 +148,8 @@ function hoverColor(effectToggle){
   		cell.style.backgroundColor = `rgb(${rColor},${gColor},${bColor}`;
   		cell.style.border = "thin solid white";
 			// cell.removeEventListener(evt.type, this);
-			cell.removeEventListener("mouseover", colorEffect);
-			cell.removeEventListener("click", colorEffect);
+			// cell.removeEventListener("mouseover", colorEffect);
+			// cell.removeEventListener("click", colorEffect);
 			// this.removeEventListener("mouseover", colorEffect);
 			// this.removeEventListener("click", colorEffect);
     }
@@ -297,5 +297,5 @@ document.addEventListener('DOMContentLoaded', function () {
 			deleteCanvas();
 		  createCanvas();
 			event.preventDefault();
-		});  
+		});
 });

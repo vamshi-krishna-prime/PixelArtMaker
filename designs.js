@@ -41,43 +41,13 @@ function eventHandler(e){
 }
 
 
-function createCanvas(){
-	const container = document.getElementById('canvas');
-	const canvas = document.createElement('div');
-	canvas.classList.add('canvas');
-  canvas.setAttribute('id','canvasID');
-	container.appendChild(canvas);
-  const gridHeight = document.getElementById("inputHeight").value;
-  const gridWidth = document.getElementById("inputWidth").value;
-  const submitButton = document.querySelector('input[type=submit]');
-  submitButton.addEventListener('click', function () {
-    console.log('The submit was clicked!');
-    console.log(gridHeight);
-    console.log(gridWidth);
-  });
-
-	for (let i=0; i<(gridHeight*gridWidth); i++){
-		const cellHeight = canvasSize / gridHeight; // define the height and width of each individual cell, based on the number of cells and canvasSize.
-    const cellWidth = canvasSize / gridWidth; // define the height and width of each individual cell, based on the number of cells and canvasSize.
-		const cell = document.createElement('div');
-		cell.style.height = cellHeight.toString() + 'px'; // create element cell and set the cell height in px
-		cell.style.width = cellWidth.toString() + 'px'; // set the cell width in px
-		// console.log(cell.style.height);
-    // console.log(cell.style.width);
-		cell.classList.add('cell'); // add the .cell class to the cell div
-		canvas.appendChild(cell); // add the cell div to the canvas div
-	}
-}
-
-
-
-
 //generate random number between 0 and 255, this number will later on represent an RGB value.
 function randomNumber(){
 	return Math.floor(Math.random() * 256);
 }
 
 
+// canvas effects
 let effects = {
 	color: function(cell){
 		let selectedColor = colorPicker.value;
@@ -169,6 +139,35 @@ function hoverColor(currentEvent){
 }
 
 ///////////////////////////////
+
+function createCanvas(){
+	const container = document.getElementById('canvas');
+	const canvas = document.createElement('div');
+	canvas.classList.add('canvas');
+  canvas.setAttribute('id','canvasID');
+	container.appendChild(canvas);
+  const gridHeight = document.getElementById("inputHeight").value;
+  const gridWidth = document.getElementById("inputWidth").value;
+  const submitButton = document.querySelector('input[type=submit]');
+  submitButton.addEventListener('click', function () {
+    console.log('The submit was clicked!');
+    console.log(gridHeight);
+    console.log(gridWidth);
+  });
+
+	for (let i=0; i<(gridHeight*gridWidth); i++){
+		const cellHeight = canvasSize / gridHeight; // define the height and width of each individual cell, based on the number of cells and canvasSize.
+    const cellWidth = canvasSize / gridWidth; // define the height and width of each individual cell, based on the number of cells and canvasSize.
+		const cell = document.createElement('div');
+		cell.style.height = cellHeight.toString() + 'px'; // create element cell and set the cell height in px
+		cell.style.width = cellWidth.toString() + 'px'; // set the cell width in px
+		// console.log(cell.style.height);
+    // console.log(cell.style.width);
+		cell.classList.add('cell'); // add the .cell class to the cell div
+		canvas.appendChild(cell); // add the cell div to the canvas div
+	}
+}
+
 
 // reset the canvas to initial style
 function resetGrid(){

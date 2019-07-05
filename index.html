@@ -1,44 +1,83 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Pixel Art Maker!</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+<html lang="en">
+  <head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>Pixel Art Maker</h1>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee|Muli|Rancho&effect=outline">
+  </head>
 
+
+<body>
+
+<!-- Header -->
+<div class="header" >
+  <h1>ㅁㅁ Pixel Art Maker ㅁㅁ</h1>
+  <p>Project in 'Intro to the Programming Nanodegree, Udacity'.</p>
+</div>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+  <a href="https://github.com/vamshi-krishna-prime" target="_blank">GitHub</a>
+  <a href="https://www.linkedin.com/in/vamshi-krishna-prime/" target="_blank">LinkedIn</a>
+  <a href="#">Facebook</a>
+  <a href="#">Twitter</a>
+</div>
+
+<!-- The flexible grid (content) -->
+<div class="row">
+  <div class="side">
+    <h2>About Me</h2>
+    <h5>Photo of me:</h5>
+    <!-- <div class="fakeimg" style="height:200px;">Image</div> -->
+    <img class="image" src="Vamshi Krishna Prime.png" alt="Picture of Vamshi Krishna Prime">
+    <p>Vamshi Krishna Prime, Student in Udacity</p>
+    <h3>Canvas options:</h3>
+    <p>Change the canvas settings using below options</p>
+    <button type="button" id="click-effect" class="btn">Mouse click</button>
+    <button type="button" id="randomColor-btn" class="btn">Random Color</button>
+    <button type="button" id="erase-btn" class="btn">Erase Color</button>
+    <button type="button" id="mouse-hover" class="btn">Mouse hover</button>
+    <button type="button" id="mouse-hover-randomColor" class="btn">Mouse random</button>
+    <!-- <button type="button" id="brush-effect" class="btn">Brush effect</button> -->
+    <button type="button" id="reset-btn" class="btn">RESET Canvas</button>
+  </div>
+  <div class="main" align="center">
+    <h1>Pixel Canvas</h1>
     <h2>Choose Grid Size</h2>
-    <form id="sizePicker" onsubmit="createCanvas()">
+    <form id="sizePicker">
         Grid Height:
-        <input type="number" id="input_height" name="height" min="0" max="50" step="1" placeholder="0-50"  required>
+        <input type="number" id="inputHeight" name="height" min="0" max="50" step="1" placeholder="0-50"  required>
         Grid Width:
-        <input type="number" id="input_width" name="width" min="0" max="50" step="1" placeholder="0-50"  required>
+        <input type="number" id="inputWidth" name="width" min="0" max="50" step="1" placeholder="0-50"  required>
         <input type="submit">
     </form>
-
-    <h2>Pick A Color</h2>
+    <h2>Pick a Color</h2>
     <input type="color" id="colorPicker">
-
-    <h2>Design Canvas</h2>
-    <!-- <div class="box"><table id="pixelCanvas"></table></div> -->
-
-<!--  -->
-    <section id="canvas"></section>
-    <section>
-      <div class="container-fluid controls">
-        <div class="row justify-content-center">
-
-            <button type="button" id="reset-btn" class="btn">RESET</button>
-            <button type="button" id="color-btn" class="btn">Random Color</button>
-            <button type="button" id="gridsize-btn" class="btn">Erase</button>
-
-        </div>
-      </div>
-    </section>
-
     <!--  -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="designs.js"></script>
-</body>
+        <section id="canvas"></section>
+        <section>
+          <div class="container-fluid controls">
+            <div class="row justify-content-center">
+
+                <!-- <button type="button" id="reset-btn" class="btn btn-lg btn-outline-danger">RESET</button>
+                <button type="button" id="color-btn" class="btn btn-lg btn-outline-secondary">Random Color</button>
+                <button type="button" id="gridsize-btn" class="btn btn-lg btn-outline-secondary">Erase</button> -->
+
+            </div>
+          </div>
+        </section>
+
+        <!--  -->
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <h2>Languages: HTML, CSS, JavaScript</h2>
+</div>
+
+<script src="designs.js"></script>
+  </body>
 </html>

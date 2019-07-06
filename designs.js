@@ -1,53 +1,60 @@
-
-const canvasSize = 500; // the size of the canvas defined in style.css
+const canvasSize = 600; // the size of the canvas is defined in style.css
 const cellColor = '#f0f2f5';
 
+/* ---------------- */
+// head to line 220 for continuation
+
+/* ---------------- */
+/* Event generation on button click */
+
 let resetBtn = document.getElementById('reset-btn');
-resetBtn.addEventListener('click', resetGrid);
+resetBtn.addEventListener('click', resetGrid); // line 194
+
+let colorPickerBtn = document.getElementById('colorPicker');
+colorPickerBtn.addEventListener('click', eventHandler); // line 33
+
+let mouseClickBtn = document.getElementById('click-effect');
+mouseClickBtn.addEventListener('click', eventHandler); // line 35
 
 let randomColorBtn = document.getElementById('randomColor-btn');
-randomColorBtn.addEventListener('click', eventHandler);
+randomColorBtn.addEventListener('click', eventHandler); // line 37
 
 let eraseBtn = document.getElementById('erase-btn');
-eraseBtn.addEventListener('click', eventHandler);
+eraseBtn.addEventListener('click', eventHandler); // line 39
 
-let colorPicker = document.getElementById('colorPicker');
-colorPicker.addEventListener('click', eventHandler);
+let mouseHoverBtn = document.getElementById('mouse-hover');
+mouseHoverBtn.addEventListener('click', eventHandler); // line 41
 
-let mouseHover = document.getElementById('mouse-hover');
-mouseHover.addEventListener('click', eventHandler);
+let mouseHoverRandomBtn = document.getElementById('mouse-hover-randomColor');
+mouseHoverRandomBtn.addEventListener('click', eventHandler); // line 43
 
-let mouseHoverRandom = document.getElementById('mouse-hover-randomColor');
-mouseHoverRandom.addEventListener('click', eventHandler);
-
-let mouseClick = document.getElementById('click-effect');
-mouseClick.addEventListener('click', eventHandler);
-
-
+/* Event handler for button click */
 function eventHandler(e){
-	if (e.target == mouseHover){
-		hoverColor('mouseHover');
-	} else if (e.target == mouseHoverRandom){
-		hoverColor('mouseHoverRandom');
-	} else if (e.target == mouseClick){
-		hoverColor('colorPicked');
-	} else if (e.target == colorPicker){
-		hoverColor('colorPicked');
-	} else if (e.target == eraseBtn){
-		hoverColor('eraser');
+	if (e.target == colorPickerBtn){
+		eventManager('colorPicked');
+	} else if (e.target == mouseClickBtn){
+		eventManager('colorPicked');
 	} else if (e.target == randomColorBtn){
-		hoverColor('randomColor');
+		eventManager('randomColor');
+	} else if (e.target == eraseBtn){
+		eventManager('eraser');
+	} else if (e.target == mouseHoverBtn){
+		eventManager('mouseHover');
+	} else if (e.target == mouseHoverRandomBtn){
+		eventManager('mouseHoverRandom');
 	}
 }
 
 
-//generate random number between 0 and 255, this number will later on represent an RGB value.
+/* ---------------- */
+/* generate random number between 0 and 255,
+this number will later represent an RGB value. */
 function randomNumber(){
 	return Math.floor(Math.random() * 256);
 }
 
 
-// canvas effects
+/* canvas color effects */
 let effects = {
 	color: function(cell){
 		let selectedColor = colorPicker.value;
@@ -57,7 +64,7 @@ let effects = {
 	},
 
 	randomColor: function(cell){
-		let rColor = randomNumber();
+		let rColor = randomNumber(); // line 52
   	let gColor = randomNumber();
   	let bColor = randomNumber();
 		cell.style.backgroundColor = `rgb(${rColor},${gColor},${bColor})`;
@@ -71,43 +78,50 @@ let effects = {
 };
 
 
+/* Function to handle selectedColor event */
 function colorEventHandler(e) {
 	if (e.target.matches('.cell')){
 		if (e.type == 'click'){
-			effects.color(e.target);
+			effects.color(e.target); // line 59
 		}else if (e.type == 'mouseover'){
 			effects.color(e.target);
 		}
 	}
 }
 
+
+/* Function to handle randomColor event */
 function hoverEventHandler(e) {
 	if (e.target.matches('.cell')){
 		if (e.type == 'click'){
-			effects.randomColor(e.target);
+			effects.randomColor(e.target); // line 66
 		}else if (e.type == 'mouseover'){
 			effects.randomColor(e.target);
 		}
 	}
 }
 
+
+/* Function to handle eraseColor event */
 function eraseEventHandler(e) {
 	if (e.target.matches('.cell')){
 		if (e.type == 'click'){
-			effects.erase(e.target);
+			effects.erase(e.target); // line 74
 		}
 	}
 }
 
 
-function hoverColor(currentEvent){
+/* ---------------- */
+/* Multiple events manager (add/remove) */
+function eventManager(currentEvent){
 	const CANVAS = document.querySelector('#canvasID');
 
 	if (CANVAS != null){
 		if (currentEvent == 'mouseHover'){
-			CANVAS.removeEventListener('click', colorEventHandler);
-			CANVAS.removeEventListener('click', hoverEventHandler);
-			CANVAS.removeEventListener('click', eraseEventHandler);
+			CANVAS.removeEventListener('click', colorEventHandler); // line 82
+			CANVAS.removeEventListener('click', hoverEventHandler); // line 94
+			CANVAS.removeEventListener('click', eraseEventHandler); // line 106
 			CANVAS.removeEventListener('mouseover', hoverEventHandler);
 			CANVAS.addEventListener('mouseover', colorEventHandler);
 		} else if (currentEvent == 'colorPicked'){
@@ -138,29 +152,37 @@ function hoverColor(currentEvent){
 	}
 }
 
-///////////////////////////////
 
+/* ---------------- */
+/* Create CANVAS */
 function createCanvas(){
 	const container = document.getElementById('canvas');
 	const canvas = document.createElement('div');
-	canvas.classList.add('canvas');
-  canvas.setAttribute('id','canvasID');
-	container.appendChild(canvas);
+	canvas.classList.add('canvas'); // add the .canvas class to the canvas
+  canvas.setAttribute('id','canvasID'); // add the .canvas id to the canvas div
+	container.appendChild(canvas); // add the canvas div to the container div
   const gridHeight = document.getElementById("inputHeight").value;
   const gridWidth = document.getElementById("inputWidth").value;
   const submitButton = document.querySelector('input[type=submit]');
   submitButton.addEventListener('click', function () {
-    console.log('The submit was clicked!');
-    console.log(gridHeight);
-    console.log(gridWidth);
+		// extra code to check grid height and width in cosole
+    // console.log('The submit was clicked!');
+		// console.log('The size of grid are:');
+    // console.log(gridHeight);
+    // console.log(gridWidth);
   });
 
 	for (let i=0; i<(gridHeight*gridWidth); i++){
-		const cellHeight = canvasSize / gridHeight; // define the height and width of each individual cell, based on the number of cells and canvasSize.
-    const cellWidth = canvasSize / gridWidth; // define the height and width of each individual cell, based on the number of cells and canvasSize.
+		/* define the height and width of each individual cell,
+		based on the number of cells and canvasSize. */
+		const cellHeight = canvasSize / gridHeight;
+    const cellWidth = canvasSize / gridWidth;
 		const cell = document.createElement('div');
-		cell.style.height = cellHeight.toString() + 'px'; // create element cell and set the cell height in px
-		cell.style.width = cellWidth.toString() + 'px'; // set the cell width in px
+		// create element cell and set the cell height and width in px
+		cell.style.height = cellHeight.toString() + 'px';
+		cell.style.width = cellWidth.toString() + 'px';
+		// extra code to check cell height and width in cosole
+		// console.log('cell height and width are:');
 		// console.log(cell.style.height);
     // console.log(cell.style.width);
 		cell.classList.add('cell'); // add the .cell class to the cell div
@@ -169,17 +191,24 @@ function createCanvas(){
 }
 
 
-// reset the canvas to initial style
+/* reset the canvas to initial style */
 function resetGrid(){
-	const cell = document.querySelectorAll('.cell'); // get all cells where the class has been changed to .colorCell
+	const cell = document.querySelectorAll('.cell');
 	cell.forEach(cell => {
-		cell.style.backgroundColor = cellColor; // set background color for these cells back to the default color.
+		cell.style.backgroundColor = cellColor;
     cell.style.border = "thin solid grey";
 	});
+	// remove all events
+	const CANVAS = document.querySelector('#canvasID');
+	CANVAS.removeEventListener('click', colorEventHandler);
+	CANVAS.removeEventListener('click', hoverEventHandler);
+	CANVAS.removeEventListener('click', eraseEventHandler);
+	CANVAS.removeEventListener('mouseover', colorEventHandler);
+	CANVAS.removeEventListener('mouseover', hoverEventHandler);
 }
 
 
-// delete the canvas
+/* delete the canvas */
 function deleteCanvas(){
   const container = document.getElementById('canvas');
 	while (container.firstChild) {
@@ -187,14 +216,18 @@ function deleteCanvas(){
 		}
 }
 
-// initialize the canvas creation
+
+/* ---------------- */
+/* initialize the canvas creation when DOM is loaded annd ready */
 document.addEventListener('DOMContentLoaded', function () {
     console.log('the DOM is ready to be interacted with!');
+		// create CANVAS after CANVAS size is picked
 		const submitBttn = document.querySelector('#sizePicker');
 		submitBttn.addEventListener('click', function(event) {
 		  console.log('hello');
-			deleteCanvas();
-		  createCanvas();
+			console.log('Creating new CANVAS');
+			deleteCanvas(); // line 212
+		  createCanvas(); // line 158
 			event.preventDefault();
 		});
 });
